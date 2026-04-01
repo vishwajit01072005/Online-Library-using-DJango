@@ -1,0 +1,312 @@
+/* Theme variables used throughout the app for colors, shadows, and borders. */
+:root {
+    --bg: #eff3ff;
+    --surface: #ffffff;
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --accent: #2563eb;
+    --text: #111827;
+    --muted: #6b7280;
+    --card: rgba(255,255,255,0.95);
+    --border: #d1d5db;
+    --shadow: 0 20px 60px rgba(15,23,42,0.08);
+}
+
+/* Ensure consistent sizing behavior across all elements. */
+* {
+    box-sizing: border-box;
+}
+
+/* Base page styling for background, text, and font family. */
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #eef2ff 0%, var(--bg) 35%, #f8fafc 100%);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Top header section containing page title and navigation. */
+header {
+    padding: 28px 32px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 2.5vw, 3rem);
+    letter-spacing: -0.05em;
+}
+
+header p {
+    margin: 12px auto 0;
+    max-width: 720px;
+    color: var(--muted);
+}
+
+/* Main site navigation bar visible at the top of every page. */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 18px auto 0;
+    padding: 0 16px;
+}
+
+/* Shared base styles for nav links and all button elements. */
+.nav-link,
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* Styling for navigation links. */
+.nav-link {
+    color: var(--primary);
+    background: rgba(79,70,229,0.1);
+}
+
+/* Hover effects for buttons and nav links. */
+.nav-link:hover,
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+/* Primary action buttons like Add to Cart, Search, Login. */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+/* Secondary actions such as View, Edit, Delete. */
+.btn-secondary {
+    background: #f3f4f6;
+    color: var(--text);
+}
+
+/* Page wrapper for content, controls the max width and horizontal padding. */
+.container {
+    width: min(1160px, calc(100% - 32px));
+    margin: 0 auto 40px;
+    padding: 0 8px;
+}
+
+/* Card-style panel used by home boxes, forms, order summaries, and other containers. */
+.card {
+    background: var(--card);
+    border: 1px solid rgba(148,163,184,0.2);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+/* Header area inside cards that holds page titles and top actions. */
+.section-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+/* Book cover thumbnails in the book list table. */
+.book-thumb {
+    width: 72px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(148,163,184,0.3);
+    display: inline-block;
+}
+
+/* Placeholder box shown when a book has no cover image. */
+.book-thumb.placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 96px;
+    background: #f8fafc;
+    color: #9ca3af;
+    font-size: 0.75rem;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px dashed rgba(148,163,184,0.3);
+}
+
+/* Search bar wrapper on the home page. */
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+/* Search text input field styling. */
+.search-input {
+    flex: 1 1 420px;
+    min-width: 260px;
+    padding: 14px 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 16px;
+    font: inherit;
+    color: var(--text);
+    background: #ffffff;
+}
+
+/* Search button inside the search form. */
+.search-form .btn {
+    flex: 0 0 auto;
+    min-width: 140px;
+    padding: 14px 22px;
+}
+
+/* Responsive adjustments for smaller screens. */
+@media (max-width: 840px) {
+    .section-header,
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-form .btn {
+        width: 100%;
+    }
+}
+
+/* Book list table styling used on the home page. */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* Common spacing and alignment for all table cells. */
+th, td {
+    text-align: left;
+    padding: 16px 18px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Header row styling inside the book table. */
+th {
+    background: #f8fafc;
+    color: #374151;
+    font-weight: 700;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* Form wrapper styling used by login, register, book form, and address form. */
+.form-card {
+    display: grid;
+    gap: 18px;
+}
+
+/* Group spacing between labels and inputs in forms. */
+.form-group {
+    display: grid;
+    gap: 8px;
+}
+
+/* Form field label styling. */
+label {
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+/* Form input and textarea styles for login, register, book/add address forms. */
+input[type='text'],
+input[type='password'],
+input[type='number'],
+textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 16px;
+    background: #ffffff;
+    font: inherit;
+    color: var(--text);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Default button appearance for form submit buttons. */
+button {
+    border: none;
+    cursor: pointer;
+}
+
+/* Flash message container shown after actions like login, logout, save, or errors. */
+.message-list {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.message-list li {
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: rgba(56,189,248,0.12);
+    color: #0c4a6e;
+    border: 1px solid rgba(56,189,248,0.3);
+}
+
+/* Page footer shown at the bottom of every page. */
+.page-footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    padding: 12px 0 28px;
+}
+
+.badge {
+    display: inline-flex;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(79,70,229,0.12);
+    color: var(--primary-dark);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.highlight {
+    color: var(--accent);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+@media (max-width: 768px) {
+    table th, table td {
+        padding: 12px 14px;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}

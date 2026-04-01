@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="section-header">
+        <div>
+            <h2 class="page-title">Shipping Address</h2>
+            <p class="muted">Add your delivery address to complete the order.</p>
+        </div>
+        <span class="badge">Order #{{ order.id }}</span>
+    </div>
+    <form method="POST" class="form-card">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Save Address</button>
+    </form>
+</div>
+{% endblock %}

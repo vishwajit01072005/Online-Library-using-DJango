@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="section-header">
+        <div>
+            <h2 class="page-title">Your Cart</h2>
+            <p>Review selected books before checkout.</p>
+        </div>
+        <span class="badge">{{ items|length }} item{% if items|length != 1 %}s{% endif %}</span>
+    </div>
+    {% if items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.book.title }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.subtotal }}</td>
+                        <td><a class="btn btn-secondary" href="{% url 'remove_from_cart' item.book.id %}">Remove</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="section-header" style="margin-top:24px;">
+            <strong>Total:</strong>
+            <div class="actions">
+                <span class="badge">${{ total }}</span>
+                <a class="btn btn-primary" href="{% url 'order' %}">Place Order</a>
+            </div>
+        </div>
+    {% else %}
+        <p>Your cart is empty. Browse books and add your favorites.</p>
+    {% endif %}
+</div>
+{% endblock %} 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Online Book Store</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Online Book Store</h1>
+        <p>Browse books, add favorites to your cart, and complete orders with a smooth checkout experience.</p>
+        <nav>
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+            <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+            {% if request.user.is_authenticated %}
+                <a class="nav-link" href="{% url 'order_list' %}">My Orders</a>
+                {% if request.user.is_superuser %}
+                    <a class="nav-link" href="{% url 'book_add' %}">Add Book</a>
+                {% endif %}
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link" href="{% url 'admin_login' %}">Admin</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main class="container">
+        {% if messages %}
+            <ul class="message-list">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    {% now "Y" as current_year %}
+    <footer class="page-footer">
+        &copy; {{ current_year }} Online Book Store · Made for smooth book purchases
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="text-align:center;">
+    <span class="badge">Order Complete</span>
+    <h2 class="page-title">Thank you for your purchase!</h2>
+    <p class="muted">Your order has been created successfully.</p>
+    <div style="margin: 24px 0;">
+        <p><strong>Order #</strong>{{ order.id }}</p>
+        <p><strong>Created</strong> {{ order.created_at|date:'F j, Y, g:i a' }}</p>
+        <p><strong>Total Paid</strong> ${{ order.total_price }}</p>
+    </div>
+    <div class="card" style="margin-bottom: 24px;">
+        <h3>Order Items</h3>
+        <ul>
+            {% for item in order.items.all %}
+                <li>{{ item.quantity }} × {{ item.book.title }} — ${{ item.price }}</li>
+            {% empty %}
+                <li>No items found for this order.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if address %}
+        <div class="card">
+            <h3>Shipping Address</h3>
+            <p>{{ address.street }}</p>
+            <p>{{ address.city }}, {{ address.state }} {{ address.postal_code }}</p>
+            <p>{{ address.country }}</p>
+        </div>
+    {% endif %}
+    <div style="margin-top: 24px; display:flex; gap: 12px; justify-content:center;">
+        <a class="btn btn-secondary" href="{% url 'order_list' %}">View My Orders</a>
+        <a class="btn btn-primary" href="{% url 'home' %}">Back to Home</a>
+    </div>
+</div>
+{% endblock %} 

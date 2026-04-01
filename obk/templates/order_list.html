@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <span class="badge">My Orders</span>
+    <h2 class="page-title">Order History</h2>
+    <p class="muted">View your completed orders and details.</p>
+
+    {% if orders %}
+        <ul class="order-list">
+            {% for order in orders %}
+                <li>
+                    <strong>Order #{{ order.id }}</strong> — {{ order.created_at|date:'F j, Y' }}
+                    <span>Total: ${{ order.total_price }}</span>
+                    <a class="btn btn-sm btn-primary" href="{% url 'order_detail' order.id %}">View</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no orders yet. Place an order to see it here.</p>
+    {% endif %}
+</div>
+{% endblock %}

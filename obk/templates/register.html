@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="section-header">
+        <h2 class="page-title">Create an Account</h2>
+        <span class="badge">New users welcome</span>
+    </div>
+    <form method="POST" class="form-card">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" required placeholder="Choose a username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required placeholder="Create a password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+</div>
+{% endblock %} 
